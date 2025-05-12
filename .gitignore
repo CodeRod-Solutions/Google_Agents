@@ -12,3 +12,4 @@ wheels/
 
 # Local configuration files
 .env
+notes.txt
