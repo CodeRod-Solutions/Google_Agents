@@ -61,12 +61,15 @@ runner = Runner(
 
 # Prepare a new message to send to the agent.
 new_message = types.Content(
-    role="user", parts=[types.Part(text="What are my preferences?")]
+    role="user", parts=[types.Part(text="What is Rod's favorite food?")]
 )
 
 # Send the message to the agent and process the events.
 # The runner handles the communication with the agent and manages the session.
 print("=== Sending message to agent and processing response ===")
+# Extract and print the text from the message parts for a cleaner output
+print(f"Question is: {new_message}")
+
 for event in runner.run(
     user_id=USER_ID,
     session_id=SESSION_ID,
