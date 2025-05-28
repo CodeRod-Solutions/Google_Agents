@@ -6,7 +6,7 @@ from rich import print
 def get_nerd_joke(topic: str, tool_context: ToolContext) -> dict:
     """Get a nerd joke based on the topic."""
     print(f"--- Tool: get_nerd_joke called for topic: {topic} ---")
-    
+
     # Example jokeds, in a real scenario this could be an API call or a database query
     jokes = {
         "python": "Why don't Python programmers like to use inheritance? Because they don't like to inherit anything!",
@@ -19,16 +19,17 @@ def get_nerd_joke(topic: str, tool_context: ToolContext) -> dict:
         "biology": "Why did the cell go to therapy? Because it had too many issues!",
         "default": "Why did the computer go to the doctor? Because it had a virus!",
     }
-    
+
     joke = jokes.get(topic.lower(), jokes["default"])
-    
+
     # Update the state with the last joke
     tool_context.state["last_joke_topic"] = topic
-    
+
     return {"status": "success", "joke": joke, "topic": topic}
 
+
 # Create the funny nerd agent
-funny_nerd_agent = Agent(
+funny_nerd = Agent(
     name="funny_nerd",
     model="gemini-2.0-flash",
     description="An agent that tells nerd jokes based on a given topic.",
