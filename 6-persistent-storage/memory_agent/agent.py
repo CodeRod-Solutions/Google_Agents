@@ -141,7 +141,7 @@ def update_user_name(name: str, tool_context: ToolContext):
     
     return {
         "action": "update_user_name",
-        old_name: old_name,
+        "old_name": old_name,
         "new_name": name,
         "message": f"User name updated to: {name}",
     }
