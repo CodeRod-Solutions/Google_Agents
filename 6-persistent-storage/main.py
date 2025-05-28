@@ -3,15 +3,15 @@ import asyncio
 from dotenv import load_dotenv
 from google.adk.runners import Runner
 from google.adk.sessions import DatabaseSessionService
-from memory_agent import memory_agent
+from memory_agent.agent import memory_agent
 from rich import print
-from utils import call_agent_sync
+from utils import call_agent_async
 
 load_dotenv()
 
 # === Create a new session service using a database for persistent storage.
 # Using SQLite for simplicity, but this can be replaced with any database.
-db_url = "sqlite:///sessions.db"
+db_url = "sqlite:///./my_agent_data.db"
 session_service = DatabaseSessionService(db_url=db_url)
 
 # === Define the initial state for the session.
@@ -23,7 +23,7 @@ initial_state = {
 
 async def main_async():
     # Define constants for session identification.
-    APP_NAME = "Memory Agent",
+    APP_NAME = "Memory Agent"
     USER_ID = "rod_morrison"
     
     # === Session Management Find or Create Session
@@ -71,7 +71,7 @@ async def main_async():
             break
         
         # Process the user input and call the agent
-        await call_agent_sync(runner, USER_ID, SESSION_ID, user_input)
+        await call_agent_async(runner, USER_ID, SESSION_ID, user_input)
         
         
 if __name__ == "__main__":
