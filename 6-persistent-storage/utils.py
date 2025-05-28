@@ -1,4 +1,5 @@
 from google.genai import types
+from rich import print
 
 # ANSI colors for terminal output
 
